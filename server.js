@@ -5,6 +5,7 @@ import colors from "colors";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
+import authRoutes from "./routes/authRoute.js";
 
 //configure .env
 dotenv.config();
@@ -21,6 +22,10 @@ app.use(morgan("dev"));
 
 // potr encolse in .env
 const PORT = process.env.PORT || 8080;
+
+//all routes
+
+app.use("/api/v1/auth", authRoutes);
 
 //res api
 app.get("/", (req, res) => {

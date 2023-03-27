@@ -20,6 +20,7 @@ const Contact = () => {
                     </p>
                     <p className="mt-3">
                         <BiMailSend /> : www.help@ecommerceapp.com
+
                     </p>
                     <p className="mt-3">
                         <BiPhoneCall /> : 012-3456789

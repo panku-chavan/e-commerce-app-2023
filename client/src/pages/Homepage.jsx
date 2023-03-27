@@ -4,7 +4,9 @@ import { useAuth } from '../Context/AuthContext'
 
 
 const Homepage = () => {
+
     const [auth, setAuth] = useAuth();
+
     return (
         <Layout title={"Home"}>
             <h1>Homepage</h1>

@@ -43,6 +43,7 @@ const Register = () => {
     };
 
     return (
+
         <Layout title="Register">
             <div className="form-container" style={{ minHeight: "90vh" }}>
                 <form onSubmit={handleSubmit}>

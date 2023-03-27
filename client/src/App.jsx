@@ -1,10 +1,14 @@
 import { Routes, Route } from "react-router-dom"
 import About from "./pages/About";
+import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Contact from "./pages/Contact";
 import Homepage from "./pages/Homepage";
 import PageNotFound from "./pages/PageNotFound";
 import Policy from "./pages/Policy";
+
+
+
 function App() {
   return (
     <>
@@ -16,6 +20,7 @@ function App() {
           <Route path="/policy" element={<Policy />} />
           <Route path="/*" element={<PageNotFound />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
 
         </Routes>
 

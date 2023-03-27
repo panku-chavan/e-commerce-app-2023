@@ -7,3 +7,30 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* navbar css */
+
+.navbar {
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+  line-height: 26px;
+  text-transform: uppercase;
+  box-shadow: 0 8px 6px -6px gray;
+  --webkit-box-shadow:0 8px 6px -6px gray;
+  border-bottom: 0px solid gray !important;
+}
+.nav-link{
+  font-weight: 300 !important;
+}
+.active{
+  border-bottom: 3px solid rgb(159, 157, 157);
+ 
+  border-radius: 2px;
+  box-shadow:0 5px 6px -6px gray ;
+}
+
+.navbar-brand{
+  font-weight: 700;
+ 
+  letter-spacing: 3px;
+}

@@ -25,11 +25,16 @@ const Register = () => {
                 address,
                 answer,
             });
+
             if (res && res.data.success) {
+
                 toast.success(res.data && res.data.messege);
                 navigate("/login");
+
             } else {
+
                 toast.error(res.data.messege);
+
             }
         } catch (error) {
             console.log(error);

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
-import { AiFillShopping } from "react-icons/ai"
+//import { AiFillShopping } from "react-icons/ai"
 
 const Header = () => {
     return (

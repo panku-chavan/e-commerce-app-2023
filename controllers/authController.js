@@ -115,6 +115,50 @@ export const loginController = async (req, res) => {
   }
 };
 
+// forgot password controller
+export const forgotPasswordController = async (req, res) => {
+  try {
+    const { email, answer, newPassword } = req.body;
+    if (!email) {
+      res.status(400).send({
+        messege: "Email is require",
+      });
+    }
+    if (!answer) {
+      res.status(400).send({
+        messege: "Answer is require",
+      });
+    }
+    if (!newPassword) {
+      res.status(400).send({
+        messege: "New password is require",
+      });
+    }
+    //check
+    const user = await userModal.findOne({ email, answer });
+    //validation
+    if (!user) {
+      return res.status(404).send({
+        success: false,
+        messege: "Wrong Email or answer",
+      });
+    }
+    const hashedNew = await hashPassword(newPassword);
+    await userModal.findByIdAndUpdate(user._id, { password: hashedNew });
+    res.status(200).send({
+      success: true,
+      messege: "Password Reset Successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      messege: "Something went wrong",
+      error,
+    });
+  }
+};
+
 //test controller
 
 export const testController = (req, res) => {

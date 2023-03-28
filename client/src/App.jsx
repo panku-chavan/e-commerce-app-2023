@@ -2,6 +2,7 @@ import { Toaster } from "react-hot-toast";
 import { Routes, Route } from "react-router-dom"
 import { PrivateRoute } from "./components/Route/PrivateRoute";
 import About from "./pages/About";
+import ForgotPass from "./pages/Auth/ForgotPass";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Contact from "./pages/Contact";
@@ -24,6 +25,7 @@ function App() {
           </Route>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPass />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/policy" element={<Policy />} />

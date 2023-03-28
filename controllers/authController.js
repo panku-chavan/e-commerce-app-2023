@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 export const registerController = async (req, res) => {
   try {
-    const { name, email, password, phone, address } = req.body;
+    const { name, email, password, phone, address, answer } = req.body;
     if (!name) {
       return res.send({ messege: "Name is Required" });
     }
@@ -19,6 +19,9 @@ export const registerController = async (req, res) => {
     }
     if (!address) {
       return res.send({ messege: "Address is Required" });
+    }
+    if (!answer) {
+      return res.send({ messege: "Answer is Required" });
     }
 
     //check user
@@ -38,6 +41,7 @@ export const registerController = async (req, res) => {
       email,
       phone,
       address,
+      answer,
       password: hashedPassword,
     }).save();
     res.status(201).send({
@@ -97,6 +101,7 @@ export const loginController = async (req, res) => {
         email: user.email,
         phone: user.phone,
         address: user.address,
+        answer: user.answer,
       },
       token,
     });

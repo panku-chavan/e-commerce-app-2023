@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { Routes, Route } from "react-router-dom"
 import About from "./pages/About";
 import Login from "./pages/Auth/Login";
@@ -23,7 +24,7 @@ function App() {
           <Route path="/login" element={<Login />} />
 
         </Routes>
-
+        <Toaster />
       </>
     </>
   )

@@ -1,7 +1,9 @@
 import { Toaster } from "react-hot-toast";
 import { Routes, Route } from "react-router-dom"
+import { AdminRoute } from "./components/Route/AdminRoute";
 import { PrivateRoute } from "./components/Route/PrivateRoute";
 import About from "./pages/About";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 import ForgotPass from "./pages/Auth/ForgotPass";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
@@ -20,8 +22,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/dashboard" element={<PrivateRoute />}>
-
-            <Route path="" element={<Dashboard />} />
+            <Route path="user" element={<Dashboard />} />
+          </Route>
+          <Route path="/dashboard" element={<AdminRoute />}>
+            <Route path="admin" element={<AdminDashboard />} />
           </Route>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />

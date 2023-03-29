@@ -1,5 +1,8 @@
 import express from "express";
-import { createProductController } from "../controllers/productController.js";
+import {
+  createProductController,
+  getProductController,
+} from "../controllers/productController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 import formidable from "express-formidable";
 
@@ -13,5 +16,9 @@ router.post(
   formidable(),
   createProductController
 );
+
+// get product route
+
+router.get("/get-product", getProductController);
 
 export default router;

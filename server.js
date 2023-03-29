@@ -7,6 +7,7 @@ import morgan from "morgan";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoute.js";
+import categoryRoutes from "./routes/categoryRoute.js";
 
 //configure .env
 dotenv.config();
@@ -28,6 +29,7 @@ const PORT = process.env.PORT || 8080;
 //all routes
 
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/category", categoryRoutes);
 
 //res api
 app.get("/", (req, res) => {

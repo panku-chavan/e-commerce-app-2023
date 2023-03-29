@@ -84,6 +84,11 @@ const ForgotPass = () => {
                     <button type="submit" className="btn btn-primary">
                         Reset Password
                     </button>
+                    <div>
+                        <span type="button" className="link" onClick={() => navigate('/login')}>
+                            Back to Login
+                        </span>
+                    </div>
                 </form>
             </div>
         </Layout>

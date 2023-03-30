@@ -54,20 +54,62 @@ export const getProductController = async (req, res) => {
   try {
     const products = await productModel
       .find({})
+      .populate("category")
       .select("-image")
       .limit(12)
       .sort({ createdAt: -1 });
     res.status(201).send({
       success: true,
+      total_count: products.length,
       messege: "All products get successfully",
       products,
-      total_count: products.length,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
       messege: "Error while getting products",
+      error,
+    });
+  }
+};
+
+//get single product controller
+
+export const getSingleProductController = async (req, res) => {
+  try {
+    const product = await productModel
+      .findOne({ slug: req.params.slug })
+      .select("-image")
+      .populate("category");
+    res.status(200).send({
+      success: true,
+      messege: "Single product get successfully",
+      product,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      messege: "Error while getting single product",
+    });
+  }
+};
+
+// get product image controller
+
+export const productImageController = async (req, res) => {
+  try {
+    const product = await productModel.findById(req.params.pid).select("image");
+    if (product.image.data) {
+      res.set("Content-type", product.image.contentType);
+      res.status(200).send(product.image.data);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      messege: "Error while getting product image",
       error,
     });
   }

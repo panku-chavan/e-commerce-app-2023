@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createProductController,
+  deleteProductController,
   getProductController,
   getSingleProductController,
   productImageController,
@@ -30,3 +31,7 @@ export default router;
 //get image route
 
 router.get("/product-image/:pid", productImageController);
+
+//delete product
+
+router.delete("/delete-product/:pid", deleteProductController);

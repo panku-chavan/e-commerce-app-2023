@@ -4,7 +4,10 @@ import toast from "react-hot-toast";
 import CategoryForm from "../../components/Form/CategoryForm";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import Layout from "../../components/Layout/Layout";
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
+import { FiEdit } from "react-icons/fi";
+import { BsTrash } from "react-icons/bs";
+
 
 const CreateCategory = () => {
     const [category, setCategory] = useState([]);
@@ -112,20 +115,22 @@ const CreateCategory = () => {
                                             <td>{c.name}</td>
                                             <td>
                                                 <button
-                                                    className="btn btn-primary ms-2"
+                                                    className="btn hover"
+                                                    title="Edit Category"
                                                     onClick={() => {
                                                         setOpen(true);
                                                         setUpdatedName(c.name);
                                                         setSelected(c);
                                                     }}
                                                 >
-                                                    Edit
+                                                    <FiEdit />
                                                 </button>
                                                 <button
-                                                    className="btn btn-danger ms-2"
+                                                    title="Delete category"
+                                                    className="btn hover "
                                                     onClick={() => handleDelete(c._id, c.name)}
                                                 >
-                                                    delete
+                                                    <BsTrash />
                                                 </button>
                                             </td>
                                         </tr>
@@ -134,11 +139,14 @@ const CreateCategory = () => {
                             </table>
                         </div>
                         <Modal onCancel={() => setOpen(false)} footer={null} open={open}>
-                            <CategoryForm
-                                value={updatedName}
-                                setValue={setUpdatedName}
-                                handleSubmit={handleEdit}
-                            />
+                            <h4>Edit Category</h4>
+                            <div>
+                                <CategoryForm
+                                    value={updatedName}
+                                    setValue={setUpdatedName}
+                                    handleSubmit={handleEdit}
+                                />
+                            </div>
                         </Modal>
                     </div>
                 </div>

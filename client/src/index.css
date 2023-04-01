@@ -108,3 +108,10 @@
   height: 70vh;
 
 }
+
+/* ==================== */
+
+.product-link{
+  text-decoration: none !important;
+  color: black !important;
+}

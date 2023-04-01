@@ -10,24 +10,24 @@ const CreateProduct = () => {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [category, setCategory] = useState("");
+    const [categories, setCategoreis] = useState([]);
     const [quantity, setQuantity] = useState("");
     const [image, setImage] = useState("");
     const [shipping, setShipping] = useState("");
-
 
     // get all category
     const getAllCategory = async () => {
         try {
             const response = await axios.get("/api/v1/category/get-category");
             if (response.data?.success) {
-                setCategory(response.data?.category);
+                setCategoreis(response.data?.category);
             }
         } catch (error) {
             console.log(error);
             toast.error("Something went wron in getting category");
         }
     };
-    console.log(category)
+    console.log(categories);
     useEffect(() => {
         getAllCategory();
     }, []);
@@ -40,15 +40,20 @@ const CreateProduct = () => {
                     </div>
                     <div className="col-md-9">
                         <h1>Create Product</h1>
-                        <div className="m-1">
+                        <div className="m-1 w-75">
                             <Select
                                 bordered={false}
                                 placeholder="Select category"
                                 size="large"
                                 showSearch
-                                className="form-select"
+                                className="form-select mb-3"
+                                onChange={(value) => setCategory(value)}
                             >
-
+                                {categories?.map((c) => (
+                                    <Option key={c._id} value={c.name}>
+                                        {c.name}
+                                    </Option>
+                                ))}
                             </Select>
                         </div>
                     </div>

@@ -35,7 +35,7 @@ const CreateProduct = () => {
 
     // create product funtion
 
-    const createProduct = (e) => {
+    const createProduct = async (e) => {
         e.preventDefault();
         try {
 
@@ -48,9 +48,9 @@ const CreateProduct = () => {
             productData.append("category", category);
             productData.append("shipping", shipping);
 
-            const response = axios.post('/api/v1/products/create-product', productData)
-            // console.log(response)
-            if (!response.data?.success) {
+            const response = await axios.post('/api/v1/products/create-product', productData)
+            //console.log(response)
+            if (response.data?.success) {
                 toast.success("Product created successfully.")
                 navigate('/dashboard/admin/products');
             } else {

@@ -25,27 +25,27 @@ const UpdateProduct = () => {
         try {
             const response = await axios.get(`/api/v1/products/get-single-product/${params.slug}`)
             const product = response.data.product;
-            console.log(product);
-            if (response.data?.success) {
-                toast.success(response.data.messege);
-                setId(product._id)
-                setName(product.name);
-                setDescription(product.description);
-                setCategory(product.category._id);
-                setPrice(product.price);
-                setQuantity(product.quantity);
-                setShipping(product.shipping);
+            // console.log(product);
+
+            setId(product._id)
+            setName(product.name);
+            setDescription(product.description);
+            setCategory(product.category._id);
+            setPrice(product.price);
+            setQuantity(product.quantity);
+            setShipping(product.shipping);
 
 
-            } else {
-                toast.error(response.data.messege);
 
-            }
+
+
         } catch (error) {
             console.log(error);
 
         }
     }
+
+
 
 
     // get all category
@@ -71,7 +71,7 @@ const UpdateProduct = () => {
     }, [])
     // create product funtion
 
-    const updateProduct = (e) => {
+    const updateProduct = async (e) => {
         e.preventDefault();
         try {
 
@@ -83,10 +83,9 @@ const UpdateProduct = () => {
             image && productData.append("image", image);
             productData.append("category", category);
             productData.append("shipping", shipping);
-
-            const response = axios.put(`/api/v1/products/update-product/${id}`, productData)
-            // console.log(response)
-            if (!response.data?.success) {
+            const response = await axios.put(`/api/v1/products/update-product/${id}`, productData)
+            console.log(response)
+            if (response.data?.success) {
                 toast.success("Product Updated successfully.")
                 navigate('/dashboard/admin/products');
             } else {
@@ -94,7 +93,7 @@ const UpdateProduct = () => {
             }
         } catch (error) {
             console.log(error);
-            toast("Something wend wrong.")
+            toast.error("Something went Wrong.")
         }
     }
 
@@ -149,18 +148,16 @@ const UpdateProduct = () => {
                                             className="img img-responsive"
                                         />
                                     </div>
-                                ) :
-                                    (
-                                        <div className="text-center">
-                                            <img
-                                                src={`/api/v1/products/product-image/${id}`}
-                                                alt="product_image"
-                                                height={"200px"}
-                                                className="img img-responsive"
-                                            />
-                                        </div>
-                                    )
-                                }
+                                ) : (
+                                    <div className="text-center">
+                                        <img
+                                            src={`/api/v1/products/product-image/${id}`}
+                                            alt="product_image"
+                                            height={"200px"}
+                                            className="img img-responsive"
+                                        />
+                                    </div>
+                                )}
                             </div>
                             <div className="mb-3">
                                 <input

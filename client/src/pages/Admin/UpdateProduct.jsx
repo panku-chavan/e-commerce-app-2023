@@ -8,7 +8,6 @@ import { useNavigate, useParams } from "react-router-dom";
 const { Option } = Select;
 
 const UpdateProduct = () => {
-
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
@@ -19,34 +18,32 @@ const UpdateProduct = () => {
     const [shipping, setShipping] = useState("");
     const navigate = useNavigate();
     const params = useParams();
-    const [id, setId] = useState("")
+    const [id, setId] = useState("");
 
     const getSingleProducts = async () => {
         try {
-            const response = await axios.get(`/api/v1/products/get-single-product/${params.slug}`)
-            const product = response.data.product;
+            const response = await axios.get(
+                `/api/v1/products/get-single-product/${params.slug}`
+            );
+            //const product = response.data.product;
             // console.log(product);
 
-            setId(product._id)
-            setName(product.name);
-            setDescription(product.description);
-            setCategory(product.category._id);
-            setPrice(product.price);
-            setQuantity(product.quantity);
-            setShipping(product.shipping);
-
-
-
-
-
+            setId(response.data.product._id);
+            setName(response.data.product.name);
+            setDescription(response.data.product.description);
+            setCategory(response.data.product.category._id);
+            setPrice(response.data.product.price);
+            setQuantity(response.data.product.quantity);
+            setShipping(response.data.product.shipping);
         } catch (error) {
             console.log(error);
-
         }
-    }
+    };
 
-
-
+    useEffect(() => {
+        getSingleProducts();
+        //eslint-disable-next-line
+    }, []);
 
     // get all category
     const getAllCategory = async () => {
@@ -64,17 +61,12 @@ const UpdateProduct = () => {
     useEffect(() => {
         getAllCategory();
     }, []);
-    useEffect(() => {
 
-        getSingleProducts();
-        //eslint-disable-next-line
-    }, [])
     // create product funtion
 
     const updateProduct = async (e) => {
         e.preventDefault();
         try {
-
             const productData = new FormData();
             productData.append("name", name);
             productData.append("description", description);
@@ -83,19 +75,26 @@ const UpdateProduct = () => {
             image && productData.append("image", image);
             productData.append("category", category);
             productData.append("shipping", shipping);
-            const response = await axios.put(`/api/v1/products/update-product/${id}`, productData)
-            console.log(response)
+            const response = await axios.put(
+                `/api/v1/products/update-product/${id}`,
+                productData
+            );
+            console.log(response);
             if (response.data?.success) {
-                toast.success("Product Updated successfully.")
-                navigate('/dashboard/admin/products');
+                toast.success("Product Updated successfully.");
+                navigate("/dashboard/admin/products");
             } else {
                 toast.error(response.data?.messege);
             }
         } catch (error) {
             console.log(error);
-            toast.error("Something went Wrong.")
+            toast.error("Something went Wrong.");
         }
-    }
+    };
+
+
+
+
 
     return (
         <Layout title={"Dashboard-Update Product"}>
@@ -113,8 +112,8 @@ const UpdateProduct = () => {
                                 size="large"
                                 showSearch
                                 className="form-select mb-3"
-                                value={category}
                                 onChange={(value) => setCategory(value)}
+                                value={category}
                             >
                                 {categories?.map((c) => (
                                     <Option key={c._id} value={c._id}>

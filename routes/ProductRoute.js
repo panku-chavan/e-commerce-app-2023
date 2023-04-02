@@ -28,7 +28,6 @@ router.get("/get-product", getProductController);
 
 //get single product
 router.get("/get-single-product/:slug", getSingleProductController);
-export default router;
 
 //get image route
 
@@ -51,3 +50,5 @@ router.put(
   formidable(),
   updateProductController
 );
+
+export default router;

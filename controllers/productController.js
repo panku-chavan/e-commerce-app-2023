@@ -154,7 +154,7 @@ export const updateProductController = async (req, res) => {
     if (!quantity) {
       return res.send({ messege: "Quantity is requred" });
     }
-    if (!image && image.size > 1000000) {
+    if (image && image.size > 1000000) {
       return res.send({
         messege: "Image is requred and size should be less than 1 MB",
       });

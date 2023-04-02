@@ -3,13 +3,15 @@ import Layout from "../components/Layout/Layout";
 // import { useAuth } from "../Context/AuthContext";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { Checkbox } from "antd";
+import { Checkbox, Radio } from "antd";
+import { Prices } from "../components/Prices";
 
 const Homepage = () => {
   // const [auth] = useAuth();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
+  const [radio, setRadio] = useState([]);
 
   //get categories
 
@@ -47,9 +49,9 @@ const Homepage = () => {
     // console.log(value, id)
     let all = [...checked];
     if (value) {
-      all.push(id)
+      all.push(id);
     } else {
-      all = all.filter((c) => c !== id)
+      all = all.filter((c) => c !== id);
     }
     setChecked(all);
   };
@@ -61,18 +63,35 @@ const Homepage = () => {
           <h4 className="text-center mt-2">Filter By Category</h4>
           <div className="d-flex flex-column ">
             {categories?.map((c) => (
-              <Checkbox
-                className="mt-2"
-                key={c._id}
-                onChange={(e) => handleFilter(e.target.checked, c._id)}
-              >
-                {c.name}
-              </Checkbox>
+              <div key={c._id} style={{ marginLeft: "20px" }}>
+                <Checkbox
+                  className="mt-2"
+
+                  onChange={(e) => handleFilter(e.target.checked, c._id)}
+                >
+                  {c.name}
+                </Checkbox>
+              </div>
             ))}
           </div>
+          <h4 className="text-center mt-2">Filter By Price</h4>
+          <div className="d-flex flex-column ">
+            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+              {
+                Prices?.map((p) => (
+                  <div key={p._id} className="" style={{ marginLeft: "20px" }}>
+                    <Radio value={p.array}>{p.name}</Radio>
+                  </div>
+                ))
+              }
+            </Radio.Group>
+
+          </div>
+
         </div>
+
         <div className="col-md-9">
-          {JSON.stringify(checked, null, 4)}
+          {JSON.stringify(radio, null, 4)}
           <h2 className="text-center">All Products</h2>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (

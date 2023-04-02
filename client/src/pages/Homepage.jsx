@@ -73,11 +73,11 @@ const Homepage = () => {
   return (
     <Layout title={"All Products - Best Offers"}>
       <div className="row mt-3">
-        <div className="col-md-2 ">
+        <div className="col-md-2 " style={{ marginLeft: "20px" }}>
           <h4 className="text-center mt-2">Filter By Category</h4>
           <div className="d-flex flex-column ">
             {categories?.map((c) => (
-              <div key={c._id} style={{ marginLeft: "20px" }}>
+              <div key={c._id} >
                 <Checkbox
                   className="mt-2"
 
@@ -93,7 +93,7 @@ const Homepage = () => {
             <Radio.Group onChange={(e) => setRadio(e.target.value)}>
               {
                 Prices?.map((p) => (
-                  <div key={p._id} className="" style={{ marginLeft: "20px" }}>
+                  <div key={p._id} className="" >
                     <Radio value={p.array}>{p.name}</Radio>
                   </div>
                 ))
@@ -101,11 +101,13 @@ const Homepage = () => {
             </Radio.Group>
 
           </div>
-
+          <div className="d-flex flex-column">
+            <button className="btn btn-danger mt-2" onClick={() => window.location.reload()}>Reset</button>
+          </div>
         </div>
 
         <div className="col-md-9">
-          {JSON.stringify(radio, null, 4)}
+          {/* {JSON.stringify(radio, null, 4)} */}
           <h2 className="text-center">All Products</h2>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (

@@ -186,3 +186,18 @@ export const updateProductController = async (req, res) => {
     });
   }
 };
+
+// product filter controller
+
+export const productFilterController = async (req, res) => {
+  try {
+    const { cheked, radio } = req.body;
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      messege: "Error while filtering products",
+      error,
+    });
+  }
+};

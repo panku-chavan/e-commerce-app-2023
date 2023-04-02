@@ -41,9 +41,6 @@ const Homepage = () => {
       toast.error("Something Went Wrong");
     }
   };
-  useEffect(() => {
-    getProducts();
-  }, []);
 
   const handleFilter = (value, id) => {
     // console.log(value, id)
@@ -56,6 +53,23 @@ const Homepage = () => {
     setChecked(all);
   };
 
+  useEffect(() => {
+    if (!checked.length || !radio.length) getProducts();
+  }, [checked.length, radio.length])
+
+  useEffect(() => {
+    if (checked.length || radio.length) filterProduct();
+  }, [checked, radio])
+
+  // get filter product
+  const filterProduct = async () => {
+    try {
+      const response = await axios.post('/api/v1/products/product-filter', { checked, radio })
+      setProducts(response.data?.products)
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <Layout title={"All Products - Best Offers"}>
       <div className="row mt-3">
@@ -104,8 +118,8 @@ const Homepage = () => {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{p.name}</h5>
-                  <p className="card-text">{p.description}</p>
-                  <p className="card-text">Rs. {p.price} </p>
+                  <p className="card-text">{p.description.substring(0, 30)}...</p>
+                  <p className="card-text">$ {p.price} </p>
                   <button className="btn btn-primary ms-2">See Details</button>
                   <button className="btn btn-secondary ms-2">
                     Add To Cart

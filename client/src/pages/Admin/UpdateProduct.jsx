@@ -93,7 +93,25 @@ const UpdateProduct = () => {
     };
 
 
+    const deleteProduct = async () => {
+        try {
+            const ans = window.prompt("Are you sure want to delete this product ?");
+            if (!ans) {
+                return
+            }
+            const response = await axios.delete(`/api/v1/products/delete-product/${id}`)
+            if (response.data.success) {
+                toast.success(response.data.messege);
+                navigate("/dashboard/admin/products");
 
+            } else {
+                toast.error(response.data.messege);
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error("Something went Wrong");
+        }
+    }
 
 
     return (
@@ -207,8 +225,11 @@ const UpdateProduct = () => {
                                 </Select>
                             </div>
                             <div className="mb3">
-                                <button className=" btn btn-primary" onClick={updateProduct}>
+                                <button className=" btn btn-primary m-2" onClick={updateProduct}>
                                     Update Product
+                                </button>
+                                <button className=" btn btn-danger m-2" onClick={deleteProduct}>
+                                    Delete Product
                                 </button>
                             </div>
                         </div>

@@ -10,22 +10,18 @@ const SearchInput = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get(`/api/v1/products/search-product/${value.keyword}`)
-            if (response?.data) {
-                setValue({
-                    ...value,
-                    result: [response.data]
-                })
-                navigate("/search");
-            } else {
-                toast.error(response.data.messege);
-            }
+            const response = await axios.get(
+                `/api/v1/products/search-product/${value.keyword}`
+            );
+            setValue({ ...value, result: response.data });
+            navigate("/search")
+
         } catch (error) {
             console.log(error);
-            toast.error("Something went wrong.")
+            toast.error("Something went wrong.");
         }
-    }
-
+    };
+    console.log(value)
     return (
         <div>
             <form className="d-flex" role="search" onSubmit={handleSubmit}>
@@ -35,10 +31,12 @@ const SearchInput = () => {
                     placeholder="Search"
                     aria-label="Search"
                     value={value.keyword}
-                    onChange={(e) => setValue({
-                        ...value,
-                        keyword: e.target.value
-                    })}
+                    onChange={(e) =>
+                        setValue({
+                            ...value,
+                            keyword: e.target.value,
+                        })
+                    }
                 />
                 <button className="btn btn-outline-success" type="submit">
                     Search

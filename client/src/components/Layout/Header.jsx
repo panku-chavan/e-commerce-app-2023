@@ -23,7 +23,7 @@ const Header = () => {
                     <Link to="/" className="navbar-brand">
                         🛒E-Commerce
                     </Link>
-                    <SearchInput />
+
                     <button
                         className="navbar-toggler"
                         type="button"
@@ -37,6 +37,7 @@ const Header = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <SearchInput />
                             <li className="nav-item">
                                 <NavLink
                                     to="/"

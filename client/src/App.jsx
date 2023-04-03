@@ -19,6 +19,7 @@ import Policy from "./pages/Policy";
 import Dashboard from "./pages/user/Dashboard";
 import Orders from "./pages/user/Orders";
 import Profile from "./pages/user/Profile";
+import SearchPage from "./pages/SearchPage";
 
 
 
@@ -43,6 +44,7 @@ function App() {
             <Route path='/dashboard/admin/products' element={<Products />} />
 
           </Route>
+          <Route path="/search" element={<SearchPage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPass />} />

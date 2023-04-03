@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 import toast from "react-hot-toast";
+import SearchInput from "../Form/SearchInput";
 
 
 const Header = () => {
@@ -22,6 +23,7 @@ const Header = () => {
                     <Link to="/" className="navbar-brand">
                         🛒E-Commerce
                     </Link>
+                    <SearchInput />
                     <button
                         className="navbar-toggler"
                         type="button"

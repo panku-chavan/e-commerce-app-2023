@@ -45,7 +45,7 @@ function App() {
             <Route path='/dashboard/admin/products' element={<Products />} />
 
           </Route>
-          <Route path="/product-details" element={<ProductDetails />} />
+          <Route path="/product-details/:slug" element={<ProductDetails />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />

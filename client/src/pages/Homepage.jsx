@@ -160,7 +160,7 @@ const Homepage = () => {
                   <h5 className="card-title">{p.name}</h5>
                   <p className="card-text">{p.description.substring(0, 30)}...</p>
                   <p className="card-text">$ {p.price} </p>
-                  <button className="btn btn-primary ms-2" onClick={() => navigate('/product-details')}>See Details</button>
+                  <button className="btn btn-primary ms-2" onClick={() => navigate(`/product-details/${p.slug}`)}>See Details</button>
                   <button className="btn btn-secondary ms-2">
                     Add To Cart
                   </button>

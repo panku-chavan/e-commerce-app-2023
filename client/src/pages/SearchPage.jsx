@@ -5,6 +5,7 @@ const SearchPage = () => {
     return (
         <Layout title={"Search Result"}>
             <h2>Search Result</h2>
+
         </Layout>
     )
 }

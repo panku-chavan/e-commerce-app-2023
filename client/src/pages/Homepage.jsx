@@ -12,6 +12,10 @@ const Homepage = () => {
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+
 
   //get categories
 
@@ -28,19 +32,36 @@ const Homepage = () => {
   };
   useEffect(() => {
     getAllCategory();
+    getTotalPage();
   }, []);
   // get products
 
   const getProducts = async () => {
     try {
-      const respons = await axios.get("/api/v1/products/get-product");
+      setLoading(true);
+      const respons = await axios.get(`/api/v1/products/product-list/${page}`);
+      setLoading(false);
       setProducts(respons.data.products);
+
       // console.log(respons.data.products)
     } catch (error) {
+      setLoading(false)
       console.log(error);
       toast.error("Something Went Wrong");
     }
   };
+
+  //pagination
+
+  const getTotalPage = async () => {
+    try {
+      const response = await axios.get('/api/v1/products/product-count');
+      setTotal(response.data?.total);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   const handleFilter = (value, id) => {
     // console.log(value, id)
@@ -129,6 +150,17 @@ const Homepage = () => {
                 </div>
               </div>
             ))}
+          </div>
+          <div className="m-2 p-2">
+            {products && products.length < total && (
+              <button className="btn btn-warning"
+                onClick={(e) => {
+                  e.preventDefault()
+                  setPage(page + 1);
+                }}>
+                {loading ? "Loading..." : "Loadmore"}
+              </button>
+            )}
           </div>
         </div>
       </div>

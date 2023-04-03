@@ -4,8 +4,10 @@ import {
   deleteProductController,
   getProductController,
   getSingleProductController,
+  productCountController,
   productFiltersController,
   productImageController,
+  productListController,
   updateProductController,
 } from "../controllers/productController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
@@ -55,5 +57,11 @@ router.put(
 //filter product
 
 router.post("/product-filter", productFiltersController);
+
+//pagination
+router.get("/product-count", productCountController);
+
+//product per page
+router.get("/product-list/:page", productListController);
 
 export default router;

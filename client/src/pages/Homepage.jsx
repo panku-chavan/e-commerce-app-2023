@@ -50,9 +50,25 @@ const Homepage = () => {
       toast.error("Something Went Wrong");
     }
   };
+  useEffect(() => {
+    if (page === 1) return
+    loadMore();
+  }, [page])
+
+  const loadMore = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(`/api/v1/products/product-list/${page}`)
+      setLoading(false);
+      setProducts([...products, ...response.data?.products])
+    } catch (error) {
+
+      console.log(error);
+      setLoading(false)
+    }
+  }
 
   //pagination
-
   const getTotalPage = async () => {
     try {
       const response = await axios.get('/api/v1/products/product-count');

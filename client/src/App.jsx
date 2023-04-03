@@ -20,6 +20,7 @@ import Dashboard from "./pages/user/Dashboard";
 import Orders from "./pages/user/Orders";
 import Profile from "./pages/user/Profile";
 import SearchPage from "./pages/SearchPage";
+import ProductDetails from "./pages/ProductDetails";
 
 
 
@@ -44,6 +45,7 @@ function App() {
             <Route path='/dashboard/admin/products' element={<Products />} />
 
           </Route>
+          <Route path="/product-details" element={<ProductDetails />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />

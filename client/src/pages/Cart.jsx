@@ -8,6 +8,17 @@ const Cart = () => {
     const [cart, setCart] = useCart();
     const [auth, setAuth] = useAuth();
     const navigate = useNavigate();
+
+    const removeCartItem = (id) => {
+        try {
+            let myCart = [...cart];
+            let index = myCart.findIndex((item) => item._id === id);
+            myCart.splice(index);
+            setCart(myCart);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <Layout title={"Your Cart"}>
             <div className="container">
@@ -25,7 +36,7 @@ const Cart = () => {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-9">
+                    <div className="col-md-6">
                         {
                             cart?.map((p) => (
                                 <div className="row shadow mt-2 rounded mb-4">
@@ -46,12 +57,13 @@ const Cart = () => {
                                         <h6>Quantity : {p?.quantity}</h6>
                                         <h6>Shipping : {p?.shipping ? "Yes" : "No"}</h6>
                                         <h6>Price : ${p?.price}</h6>
+                                        <div ><button className="btn btn-danger" onClick={() => removeCartItem(p._id)}>Remove</button></div>
                                     </div>
                                 </div>
                             ))
                         }
                     </div>
-                    <div className="col-md-3">Checout | payment</div>
+                    <div className="col-md-4">Checout | payment</div>
                 </div>
             </div>
         </Layout>

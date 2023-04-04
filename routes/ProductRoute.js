@@ -9,6 +9,7 @@ import {
   productImageController,
   productListController,
   searchProductController,
+  similarProductController,
   updateProductController,
 } from "../controllers/productController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
@@ -67,5 +68,8 @@ router.get("/product-list/:page", productListController);
 
 // search product router
 router.get("/search-product/:keyword", searchProductController);
+
+//similar products
+router.get("/similar-products/:pid/:cid", similarProductController);
 
 export default router;

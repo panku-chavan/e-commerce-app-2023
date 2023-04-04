@@ -22,12 +22,12 @@
 .nav-link{
   font-weight: 300 !important;
 }
-.active{
+/* .active{
   border-bottom: 3px solid rgb(159, 157, 157);
  
   border-radius: 2px;
   box-shadow:0 5px 6px -6px gray ;
-}
+} */
 
 .navbar-brand{
   font-weight: 700;

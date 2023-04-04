@@ -4,6 +4,7 @@ import {
   deleteProductController,
   getProductController,
   getSingleProductController,
+  productCategoryController,
   productCountController,
   productFiltersController,
   productImageController,
@@ -71,5 +72,8 @@ router.get("/search-product/:keyword", searchProductController);
 
 //similar products
 router.get("/similar-products/:pid/:cid", similarProductController);
+
+// categoriwise product
+router.get("/product-category/:slug", productCategoryController);
 
 export default router;

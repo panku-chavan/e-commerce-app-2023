@@ -3,12 +3,14 @@ import Layout from "../components/Layout/Layout";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useCart } from "../Context/CartContext";
 
 const ProductDetails = () => {
     const [product, setProduct] = useState({});
     const params = useParams();
     const [similarProduct, setSimilarProduct] = useState([]);
     const navigate = useNavigate();
+    const [cart, setCart] = useCart();
     //get similar products
 
 
@@ -62,7 +64,11 @@ const ProductDetails = () => {
                         <h6>Price : ${product.price}</h6>
                         <div className="text-center">
                             <button className="btn btn-secondary ms-2 "
-
+                                onClick={() => {
+                                    setCart([...cart, product])
+                                    localStorage.setItem("cart", JSON.stringify([...cart, product]));
+                                    toast.success("Item added to cart.")
+                                }}
                             >
                                 Add To Cart
                             </button>
@@ -86,7 +92,12 @@ const ProductDetails = () => {
                                     <p className="card-text">{p.description.substring(0, 30)}...</p>
                                     <p className="card-text">$ {p.price} </p>
                                     <button className="btn btn-primary ms-2" onClick={() => navigate(`/product-details/${p.slug}`)}>See Details</button>
-                                    <button className="btn btn-secondary ms-2">
+                                    <button className="btn btn-secondary ms-2"
+                                        onClick={() => {
+                                            setCart([...cart, p])
+                                            localStorage.setItem("cart", JSON.stringify([...cart, p]))
+                                            toast.success("Item added to cart.")
+                                        }}>
                                         Add To Cart
                                     </button>
                                 </div>

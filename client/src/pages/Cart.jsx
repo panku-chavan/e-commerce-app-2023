@@ -3,6 +3,7 @@ import Layout from "../components/Layout/Layout";
 import { useCart } from "../Context/CartContext";
 import { useAuth } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Cart = () => {
     const [cart, setCart] = useCart();
@@ -16,6 +17,7 @@ const Cart = () => {
             myCart.splice(index, 1);
             setCart(myCart);
             localStorage.setItem("cart", JSON.stringify(myCart))
+            toast.success("Item removed into cart.")
         } catch (error) {
             console.log(error);
         }

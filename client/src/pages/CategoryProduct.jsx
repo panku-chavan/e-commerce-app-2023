@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout/Layout'
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useCart } from '../Context/CartContext';
+import Toast, { toast } from 'react-hot-toast';
 
 const CategoryProduct = () => {
     const [products, setProducts] = useState([]);
     const [category, setCategory] = useState([])
+    const [cart, setCart] = useCart();
     const params = useParams();
     const navigate = useNavigate();
 
@@ -43,7 +46,13 @@ const CategoryProduct = () => {
                                 <p className="card-text">{p.description.substring(0, 30)}...</p>
                                 <p className="card-text">$ {p.price} </p>
                                 <button className="btn btn-primary ms-2" onClick={() => navigate(`/product-details/${p.slug}`)}>See Details</button>
-                                <button className="btn btn-secondary ms-2">
+                                <button className="btn btn-secondary ms-2"
+                                    onClick={() => {
+                                        setCart([...cart, p])
+                                        localStorage.setItem("cart", JSON.stringify([...cart, p]))
+                                        toast.success("Item added to cart")
+                                    }}
+                                >
                                     Add To Cart
                                 </button>
                             </div>

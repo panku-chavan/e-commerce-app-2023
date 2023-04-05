@@ -13,8 +13,9 @@ const Cart = () => {
         try {
             let myCart = [...cart];
             let index = myCart.findIndex((item) => item._id === id);
-            myCart.splice(index);
+            myCart.splice(index, 1);
             setCart(myCart);
+            localStorage.setItem("cart", JSON.stringify(myCart))
         } catch (error) {
             console.log(error);
         }

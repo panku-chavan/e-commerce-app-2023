@@ -10,6 +10,26 @@ const Cart = () => {
     const [auth, setAuth] = useAuth();
     const navigate = useNavigate();
 
+    const totalPrice = () => {
+        try {
+            let total = 0;
+            cart.map((c) => {
+                total = total + c.price
+            })
+            return total.toLocaleString(
+                // "en-US", {
+                // style: "currency",
+                // currency: "USD"
+                "hi-IN", {
+                style: "currency",
+                currency: "INR"
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
     const removeCartItem = (id) => {
         try {
             let myCart = [...cart];
@@ -39,7 +59,7 @@ const Cart = () => {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-7">
                         {
                             cart?.map((p) => (
                                 <div className="row shadow mt-2 rounded mb-4">
@@ -53,20 +73,32 @@ const Cart = () => {
                                             width={"200px"}
                                         />
                                     </div>
-                                    <div className="col-md-8 mt-4">
+                                    <div className="col-md-8 mt-4 mb-4">
                                         <h6>Name : {p?.name}</h6>
                                         <h6>Description : {p?.description}</h6>
                                         {/* <h6>Category : {p?.category?.name}</h6> */}
                                         <h6>Quantity : {p?.quantity}</h6>
                                         <h6>Shipping : {p?.shipping ? "Yes" : "No"}</h6>
-                                        <h6>Price : ${p?.price}</h6>
+                                        <h6>Price : ₹ {p?.price}</h6>
                                         <div ><button className="btn btn-danger" onClick={() => removeCartItem(p._id)}>Remove</button></div>
                                     </div>
                                 </div>
                             ))
                         }
                     </div>
-                    <div className="col-md-4">Checout | payment</div>
+                    <div className="col-md-5 mb-2 text-center ">
+                        {
+                            cart?.length ? (
+                                <div className="shadow mt-2 mb-2 p-2 rounded">
+                                    <h3>Cart Summery</h3>
+                                    <h6>Total | Checkout | Payment</h6>
+                                    <hr />
+                                    <h4>Total :{totalPrice()}</h4>
+                                </div>
+                            ) : null
+                        }
+
+                    </div>
                 </div>
             </div>
         </Layout>

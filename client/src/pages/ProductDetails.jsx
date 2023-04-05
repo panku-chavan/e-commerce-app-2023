@@ -61,7 +61,7 @@ const ProductDetails = () => {
                         <h6>Category : {product.category?.name}</h6>
                         <h6>Quantity : {product.quantity}</h6>
                         <h6>Shipping : {product.shipping ? "Yes" : "No"}</h6>
-                        <h6>Price : ${product.price}</h6>
+                        <h6>Price : ₹ {product.price}</h6>
                         <div className="text-center">
                             <button className="btn btn-secondary ms-2 "
                                 onClick={() => {
@@ -90,7 +90,7 @@ const ProductDetails = () => {
                                 <div className="card-body">
                                     <h5 className="card-title">{p.name}</h5>
                                     <p className="card-text">{p.description.substring(0, 30)}...</p>
-                                    <p className="card-text">$ {p.price} </p>
+                                    <p className="card-text">₹ {p.price} </p>
                                     <button className="btn btn-primary ms-2" onClick={() => navigate(`/product-details/${p.slug}`)}>See Details</button>
                                     <button className="btn btn-secondary ms-2"
                                         onClick={() => {

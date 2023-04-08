@@ -5,6 +5,7 @@ import UserMenu from '../../components/Layout/UserMenu'
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../Context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -15,7 +16,7 @@ const Profile = () => {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
-
+    const navigate = useNavigate();
     // get user data
     useEffect(() => {
         const { name, email, phone, address } = auth.user;
@@ -45,8 +46,9 @@ const Profile = () => {
                 ls = JSON.parse(ls);
                 ls.user = res.data?.updatedUser;
                 localStorage.setItem("auth", JSON.stringify(ls));
-                console.log(res.data)
+                //console.log(res.data)
                 toast.success("Profile Update SuccessFully");
+                navigate('/dashboard/user')
             }
         } catch (error) {
             console.log(error);

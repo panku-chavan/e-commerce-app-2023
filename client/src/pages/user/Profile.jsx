@@ -40,11 +40,12 @@ const Profile = () => {
             if (res.data?.error) {
                 toast.error(res.data?.error)
             } else {
-                setAuth({ ...auth, user: res.data?.updateUser });
+                setAuth({ ...auth, user: res.data?.updatedUser });
                 let ls = localStorage.getItem("auth");
                 ls = JSON.parse(ls);
-                ls.user = res.data?.updateUser;
+                ls.user = res.data?.updatedUser;
                 localStorage.setItem("auth", JSON.stringify(ls));
+                console.log(res.data)
                 toast.success("Profile Update SuccessFully");
             }
         } catch (error) {

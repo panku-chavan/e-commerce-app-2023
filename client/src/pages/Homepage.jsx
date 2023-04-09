@@ -146,12 +146,12 @@ const Homepage = () => {
           </div>
         </div>
 
-        <div className="col-md-9">
+        <div className="col-md-9 container-sm" style={{ marginLeft: "50px" }}>
           {/* {JSON.stringify(radio, null, 4)} */}
           <h2 className="text-center">All Products</h2>
-          <div className="d-flex flex-wrap">
+          <div className="d-flex flex-wrap" >
             {products?.map((p) => (
-              <div className="card m-2" style={{ width: "18rem" }} key={p._id}>
+              <div className="card m-2 shadow" style={{ width: "18rem" }} key={p._id}>
                 <img
                   src={`/api/v1/products/product-image/${p._id}`}
                   className="card-img-top"

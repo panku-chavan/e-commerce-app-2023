@@ -80,7 +80,7 @@ const ProductDetails = () => {
                     {similarProduct.length < 1 && (<p className="text-center">No Similar Product Found</p>)}
                     <div className="d-flex flex-wrap ">
                         {similarProduct?.map((p) => (
-                            <div className="card m-2" style={{ width: "18rem" }} key={p._id}>
+                            <div className="card m-2 shadow mb-3" style={{ width: "18rem" }} key={p._id}>
                                 <img
                                     src={`/api/v1/products/product-image/${p._id}`}
                                     className="card-img-top"

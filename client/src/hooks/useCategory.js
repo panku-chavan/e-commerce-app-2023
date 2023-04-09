@@ -1,22 +1,22 @@
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
 
 export default function useCategory() {
   const [categories, setCategories] = useState([]);
 
-  // get categories
-
-  const getCategory = async () => {
+  //get cat
+  const getCategories = async () => {
     try {
-      const response = await axios.get("/api/v1/category/get-category");
-      setCategories(response.data?.category);
+      const { data } = await axios.get("/api/v1/category/get-category");
+      setCategories(data?.category);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getCategory();
+    getCategories();
   }, []);
+
   return categories;
 }

@@ -1,13 +1,12 @@
-import jwt from "jsonwebtoken";
-import userModal from "../models/userModal.js";
+import JWT from "jsonwebtoken";
+import userModel from "../models/userModel.js";
 
-//protected routr || token based
-
+//Protected Routes token base
 export const requireSignIn = async (req, res, next) => {
   try {
-    const decode = jwt.verify(
+    const decode = JWT.verify(
       req.headers.authorization,
-      process.env.JWT_SECRET_KEY
+      process.env.JWT_SECRET
     );
     req.user = decode;
     next();
@@ -16,14 +15,14 @@ export const requireSignIn = async (req, res, next) => {
   }
 };
 
-//admin access
+//admin acceess
 export const isAdmin = async (req, res, next) => {
   try {
-    const user = await userModal.findById(req.user._id);
+    const user = await userModel.findById(req.user._id);
     if (user.role !== 1) {
       return res.status(401).send({
         success: false,
-        messege: "UnAuthorized Access",
+        message: "UnAuthorized Access",
       });
     } else {
       next();
@@ -32,8 +31,8 @@ export const isAdmin = async (req, res, next) => {
     console.log(error);
     res.status(401).send({
       success: false,
-      messege: "Error in admin middleware",
       error,
+      message: "Error in admin middelware",
     });
   }
 };

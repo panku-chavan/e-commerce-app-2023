@@ -1,8 +1,7 @@
 /* ===================================
 ========= register page  */
-
 .form-container {
-  
+  margin-top: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +21,7 @@
   text-align: center;
   margin-bottom: 15px;
   font-weight: bold;
-  
+  font-family: "Playfair Display", serif;
 }
 
 .form-container form input {
@@ -53,10 +52,12 @@
     #000000
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-.link{
-  color: #353434a4!important;
-}
-.link:hover{
-  color: rgb(157, 61, 236) !important;
+
+.forgot-btn {
+  background-color: #434343a4 !important;
+  border: 0 !important;
 }
 
+.forgot-btn:hover {
+  color: white !important;
+}

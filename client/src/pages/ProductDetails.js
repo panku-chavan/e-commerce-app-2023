@@ -42,7 +42,7 @@ const ProductDetails = () => {
   return (
     <Layout>
       <div className="row container product-details">
-        <div className="col-md-6">
+        <div className="col-md-6 ">
           <img
             src={`/api/v1/product/product-photo/${product._id}`}
             className="card-img-top"
@@ -58,9 +58,9 @@ const ProductDetails = () => {
           <h6>Description : {product.description}</h6>
           <h6>
             Price :
-            {product?.price?.toLocaleString("en-US", {
+            {product?.price?.toLocaleString("hi-IN", {
               style: "currency",
-              currency: "USD",
+              currency: "INR",
             })}
           </h6>
           <h6>Category : {product?.category?.name}</h6>
@@ -94,9 +94,9 @@ const ProductDetails = () => {
                 <div className="card-name-price">
                   <h5 className="card-title">{p.name}</h5>
                   <h5 className="card-title card-price">
-                    {p.price.toLocaleString("en-US", {
+                    {p.price.toLocaleString("hi-IN", {
                       style: "currency",
-                      currency: "USD",
+                      currency: "INR",
                     })}
                   </h5>
                 </div>

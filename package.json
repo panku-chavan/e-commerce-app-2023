@@ -8,7 +8,7 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix ./client",
-    "serve": "concurrently \"npm run server\" \"npm run client\""
+    "serve": "concurrently \"npm run start\" \"npm run client\""
   },
   "keywords": [],
   "author": "Pankaj Chavan",

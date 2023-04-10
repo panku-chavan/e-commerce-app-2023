@@ -74,8 +74,17 @@ const ForgotPasssword = () => {
           </div>
 
           <button type="submit" className="btn btn-primary">
-            RESET
+            Reset
           </button>
+          <div>
+            <span
+              type="button"
+              className="link"
+              onClick={() => navigate("/login")}
+            >
+              Back to Login
+            </span>
+          </div>
         </form>
       </div>
     </Layout>
